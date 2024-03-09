@@ -33,7 +33,7 @@ class Branch(models.Model):
 class About_Us(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to="AboutUsImage/")
-    text = models.Text()
+    text = models.TextField()
 
     def __str__(self):
         return self.title
@@ -80,19 +80,18 @@ class Product(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    def get_absolute_url(self):
+        return f"product/{self.pk}/"
+
     class Meta:
         verbose_name = _("Product")
         verbose_name_plural = _("Products")
 
 
 class Image(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="productimage")
     image = models.ImageField(verbose_name="Images product uchun", upload_to="iamges/")
 
     def __str__(self) -> str:
         return self.product
 
-
-
-class Store(models.Model):
-    

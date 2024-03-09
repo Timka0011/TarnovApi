@@ -8,8 +8,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(max_length=50)
-    number = models.CharField(max_length=50)
+    username = models.CharField(max_length=50, unique=True, blank=True, null=True)
+    number = models.CharField(max_length=50, unique=True)
 
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now_add=True)
@@ -18,16 +18,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=False)
     is_superadmin = models.BooleanField(default=False)
 
-    USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = [
-        "number",
-    ]
+    USERNAME_FIELD = "number"
+    REQUIRED_FIELDS = ["username"]
 
-    objects = manager.UserManager
+    objects = manager.UserManager()
 
     def __str__(self) -> str:
         return self.username
-    
+
     class Meta:
         verbose_name = _("User")
         verbose_name_plural = _("Users")
