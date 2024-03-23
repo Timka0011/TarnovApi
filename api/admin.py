@@ -4,7 +4,7 @@ from . import models
 
 
 
-admin.site.register(models.About_Us)
+admin.site.register(models.AboutUs)
 admin.site.register(models.Branch)
 admin.site.register(models.SocialNetwork)
 admin.site.register(models.Description)

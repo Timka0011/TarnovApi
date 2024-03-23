@@ -16,7 +16,7 @@ class BranchSerializer(serializers.ModelSerializer):
 
 class AboutUsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.About_Us
+        model = models.AboutUs
         fields = "__all__"
 
 
@@ -29,21 +29,22 @@ class SocialsSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Category
-        fields = ["title", "image"]
+        fields = "__all__"
 
+class ImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Image
+        fields = ["product", "image"]
 
 class ProductSerializer(serializers.ModelSerializer):
 
     category = CategorySerializer()
+    images = ImageSerializer()
 
     class Meta:
         model = models.Product
         fields = ["title", "category", "image", "text", "narx"]
 
 
-class ImageSerializer(serializers.ModelSerializer):
-    product = ProductSerializer
 
-    class Meta:
-        model = models.Image
-        fields = ["product", "image"]

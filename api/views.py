@@ -41,7 +41,7 @@ class BranchList(generics.ListAPIView):
     serializer_class = serializers.BranchSerializer
 
 class AboutUs(generics.ListAPIView):
-    queryset = models.About_Us.objects.all()
+    queryset = models.AboutUs.objects.all()
     serializer_class = serializers.AboutUsSerializer
 
 
